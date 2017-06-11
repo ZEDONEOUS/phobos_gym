@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'partials/head.html' %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'partials/menu.html'%}
+        </div>
+        <div class="jumbotron rutinas">
+            <h1 class="display-4">Nuestras Rutinas para {{context['titulo'][0].Descripcion}}</h1>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action active" href="/rutinas">General</a>
+                        {% for tipo_cuerpo in context['tipos_cuerpo'] %}
+                            <a class="list-group-item list-group-item-action" href="/rutinas/tipo-cuerpo/{{tipo_cuerpo.Id}}">
+                                {{tipo_cuerpo.Descripcion}}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        {% set counter = 0 %}
+                        {% for rutina in context['rutinas']%}
+                        {% set counter = counter + 1 %}
+                        <div class="col-md-4 my-1">
+                            <div class="card">
+                                <img src="{{url_for('static', filename = 'assets/' + rutina.IdRutina.Nombre|lower + '.png')}}" style="padding:35px 15px 0;">
+                                <div class="card-block">
+                                    <h4 class="card-title">
+                                        {{counter}}. {{rutina.IdRutina.Nombre}}
+                                    </h4>
+                                    <hr class="my-2">
+                                    <p class="card-text">
+                                        {{rutina.IdRutina.Descripcion}}
+                                    </p>
+                                    <a href="/rutinas-detalle/{{rutina.IdRutina.Id}}" class="btn btn-success">Detalles</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

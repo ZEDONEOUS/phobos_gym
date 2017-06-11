@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'partials/head.html' %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'partials/menu.html'%}
+        </div>
+        <div class="jumbotron rutinas">
+            <h1>Bienvenido al dashbard de usuario - {{session.nombre}}</h1>
+            <hr class="my-2">
+            <div class="row">
+                <div class="card col-md-2 mx-3 px-0">
+                    <div class="card-block">
+                        <img class="img-fluid" src="{{url_for('static', filename = 'assets/user.png')}}" alt="">
+                        <div class="card-text">
+                            <hr class="my-3">
+                            <b>Nombre</b>
+                            <p>
+                                {{ context['usuario'][0]['Nombre'] }}
+                            </p>
+                            <b>Apellido</b>
+                            <p>
+                                {{ context['usuario'][0]['Apellido'] }}
+                            </p>
+                            <b>Usuario</b>
+                            <p>
+                                {{ context['usuario'][0]['Usuario'] }}
+                            </p>
+                            <b>Email</b>
+                            <p>
+                                {{ context['usuario'][0]['Email'] }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-md-9">
+                    <div class="card-block">
+                        <h4 class="card-title">Rutinas asociadas a usuario:</h4>
+                        <hr class="my-2">
+                        {% if context['rutinas'] %}
+                        <ul class="list-group">
+                            {% for rut in context['rutinas'] %}
+                                <li class="list-group-item mb-2">
+                                    <div class="imge col-md-2 pl-0">
+                                        <img class="img-fluid" src="{{url_for('static', filename = 'assets/' + rut['IdRutina']['Nombre']|lower + '.png')}}">
+                                    </div>
+                                    <div class="text col-md-4" >
+                                        <b>{{rut['IdRutina']['Nombre']}}</b> <br>
+                                        <hr class="my-2">
+                                        <p>
+                                            {{rut['IdRutina']['Descripcion']}}<br>
+                                            <a class="btn btn-primary py-1 mt-2" href="rutinas-detalle/{{rut['IdRutina']['Id']}}">Detalles</a>
+                                        </p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                            No hay rutinas asociadas al usuario
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

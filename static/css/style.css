@@ -1,0 +1,36 @@
+/* -- Hoja de estilos para Roguz Gym -- */
+
+body{
+    padding-top:5 rem;
+    background: #f5f5f5
+}
+
+.container-fluid{
+    margin-top:55px;
+}
+
+.hidden-field-control label{
+    display: none;
+}
+
+.nav-list .nav-header{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#roguz-carousel{
+    padding: 0;
+    background:#222;
+    width:100%;
+    display:block;
+    margin:0 auto 15px;
+    height: 400px !important;
+}
+
+.dashboard-admin-list ul{
+    display: block;
+}
+
+.dashboard-admin-list h5 div.btn{
+    cursor: pointer;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'partials/head.html' %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'partials/menu.html'%}
+        </div>
+        <div class="jumbotron rutinas_detalle">
+            <div class="row">
+                <div class="col-md-3">
+                    {% set rutina = context['rutina'][0] %}
+                    {% if rutina %}
+                        <div class="card">
+                            <img src="{{url_for('static', filename = 'assets/' + rutina.Nombre|lower + '.png')}}" style="padding:35px 15px 0;">
+                            <div class="card-block">
+                                <h4 class="card-title">
+                                    {{rutina.Nombre}}
+                                </h4>
+                                <hr class="my-2">
+                                <p class="card-text">
+                                    {{rutina.Descripcion}}
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-block">
+                            <h5>Tipo Cuerpo:</h5>
+                            <hr class="my-3">
+                            {% set counter = 0 %}
+                            {% if context['tipo_cuerpo'] and context['tipo_cuerpo'] | length > 0 %}
+                                {% for tipo_cuerpo in context['tipo_cuerpo'] %}
+                                    {% set counter = counter + 1 %}
+                                    <ul class="list-group">
+                                        <li class="list-group-item" style="margin-bottom:5px;">
+                                            {{counter}}. {{tipo_cuerpo.IdTipoCuerpo.Descripcion}}
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card">
+                        <div class="card-block">
+                            <h5>Ejercicios:</h5>
+                            <hr class="my-3">
+                            {% set counter = 0 %}
+                            {% if context['ejercicios'] and context['ejercicios'] | length > 0 %}
+                                {% for ejercicio in context['ejercicios'] %}
+                                    {% set counter = counter + 1 %}
+                                    <ul class="list-group">
+                                        <li class="list-group-item" style="margin-bottom:5px;">
+                                            <p style="width:100%;">
+                                                <b>{{counter}}. {{ejercicio.IdEjercicio.Nombre}}</b><br>
+                                            </p>
+                                            <p>
+                                                {{ejercicio.IdEjercicio.Descripcion}}
+                                            </p>
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

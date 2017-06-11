@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'partials/head.html' %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'partials/menu.html'%}
+        </div>
+        <div class="jumbotron rutinas">
+            <h1 class="display-4">Listado de Ejercicios</h1>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <h5>Ejercicios:</h5>
+                            <hr class="my-3">
+                            <ul class="list-group">
+                                {% set counter = 0 %}
+                                {% for ejercicio in context['ejercicios'] %}
+                                    {% set counter = counter + 1 %}
+                                    <li class="list-group-item mb-2">
+                                        <p>
+                                            <b>{{counter}}. {{ejercicio.Nombre}}</b> <br>
+                                            {{ejercicio.Descripcion}}
+                                        </p>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

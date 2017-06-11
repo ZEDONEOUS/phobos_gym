@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'partials/head.html' %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'partials/menu.html'%}
+        </div>
+        <div class="jumbotron dashboard-admin-list">
+            <h1>Bienvenido administrador - {{session.nombre}}</h1>
+            <hr class="my-2">
+            {% include 'partials/messages_helpers.html' %}
+            <div class="card">
+                <div class="card-block">
+                    <h5>
+                        Rutinas registradas:
+                        <a class="btn btn-warning float-right py-1" href="/insertar-rutina">Insertar nueva rutina</a>
+                        <div class="btn btn-success float-right py-1 mx-1">Desplegar</div>
+                    </h5>
+                    <hr class="my-3">
+                    <ul class="list-group"  style="display:none;">
+                        {% for rutina in context['rutinas'] %}
+                            <li class=" d-inline-block list-group-item my-1" style="width:100%;">
+                                <p>
+                                    <b>{{rutina.Nombre}}</b><br>
+                                    {{rutina.Descripcion}}
+                                </p>
+                                <hr class="my-3">
+                                <div class="d-block">
+                                    <form class="d-inline-block" action="/insertar-rutina-ejercicio/{{rutina.Id}}" method="GET">
+                                        <button type="submit" class="btn btn-success">Agregar Ejercicio</button>
+                                    </form>
+                                    <form class="d-inline-block" action="/insertar-rutina-tipo-cuerpo/{{rutina.Id}}" method="GET">
+                                        <button type="submit" class="btn btn-warning">Agregar Tipo Cuerpo</button>
+                                    </form>
+                                    <form class="d-inline-block" action="/eliminar-rutina/{{rutina.Id}}" method="POST">
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-block">
+                    <h5>
+                        Ejercicios registrados:
+                        <a class="btn btn-warning float-right py-1" href="/insertar-ejercicio">Insertar nuevo ejercicio</a>
+                        <div class="btn btn-success float-right py-1 mx-1">Desplegar</div>
+                    </h5>
+                    <hr class="my-3">
+                    <ul class="list-group" style="display:none;">
+                        {% for ejercicio in context['ejercicios'] %}
+                            <li class="list-group-item my-1">
+                                <p>
+                                    <b>{{ejercicio.Nombre}}</b><br>
+                                    {{ejercicio.Descripcion}}
+                                </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-block">
+                    <h5>
+                        Usuarios registrados:
+                        <div class="btn btn-success float-right py-1 mx-1">Desplegar</div>
+                    </h5>
+                    <hr class="my-3">
+                    <ul class="list-group" style="display:none;">
+                        {% for usuario in context['usuarios'] %}
+                            <li class="list-group-item my-1">
+                                <p>
+                                    <b>{{usuario.Nombre}}</b><br>
+                                    {{usuario.Email}}
+                                </p>
+                                <hr class="my-3">
+                                <div class="d-block">
+                                    <form class="d-inline-block" action="/insertar-rutina-usuario/{{usuario.Id}}" method="GET">
+                                        <button type="submit" class="btn btn-primary">Agregar rutina</button>
+                                    </form>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

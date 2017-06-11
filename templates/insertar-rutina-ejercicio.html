@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'partials/head.html' %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'partials/menu.html'%}
+        </div>
+        <div class="jumbotron rutinas">
+            <h1 class="display-4">Insertar ejercicios a rutina</h1>
+            <hr class="my-4">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-block">
+                        {% include 'partials/messages_helpers.html' %}
+                        {% from 'partials/form_helpers.html' import render_field %}
+                        <form class="/insertar-rutina-tipo-cuerpo" method="POST">
+                            <div class="form-group">
+                                {{render_field(form.rutina_nombre, class_="form-control", value=rutina[0]["Nombre"], readonly=true)}}
+                            </div>
+                            <div class="form-group">
+                                <label>Ejercicios agregados a la rutina</label>
+                                <ul class="list-group">
+                                    {% if ejercicios %}
+                                        {% for ej in ejercicios %}
+                                        <li class="list-group-item">{{ej['IdEjercicio']['Nombre']}}</li>
+                                        {% endfor %}
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <div class="form-group">
+                                {{render_field(form.new_ejercicio, class_="form-control")}}
+                            </div>
+                            <div class="form-group hidden-field-control">
+                                {{render_field(form.rutina_id)}}
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-outline-success my-2 my-lg-0" type="submit" name="" value="Enviar">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
