@@ -1,2 +1,2 @@
-# roguz_gym
-Repositorio de desarrollo de aplicacion de ROGUZGYM desarrollada en python
+# phobos_gym
+Repositorio de desarrollo de aplicacion de PHOBOS_GYM desarrollada en python
