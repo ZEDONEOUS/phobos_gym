@@ -26,22 +26,21 @@
                     <div class="row">
                         {% set counter = 0 %}
                         {% for rutina in context['rutinas']%}
-                        {% set counter = counter + 1 %}
-                        <div class="col-md-4 my-1">
-                            <div class="card">
-                                <img src="{{url_for('static', filename = 'assets/' + rutina.IdRutina.Nombre|lower + '.png')}}" style="padding:35px 15px 0;">
-                                <div class="card-block">
-                                    <h4 class="card-title">
-                                        {{counter}}. {{rutina.IdRutina.Nombre}}
-                                    </h4>
-                                    <hr class="my-2">
-                                    <p class="card-text">
-                                        {{rutina.IdRutina.Descripcion}}
-                                    </p>
-                                    <a href="/rutinas-detalle/{{rutina.IdRutina.Id}}" class="btn btn-success">Detalles</a>
-                                </div>
-                            </div>
-                        </div>
+                          <div class="col-md-4 my-1">
+                              <div class="card">
+                                  <img src="{{url_for('static', filename = 'assets/' + rutina.IdRutina.Nombre|lower + '.png')}}" style="padding:35px 15px 0;">
+                                  <div class="card-block">
+                                      <h4 class="card-title">
+                                          {{loop.index}}. {{rutina.IdRutina.Nombre}}
+                                      </h4>
+                                      <hr class="my-2">
+                                      <p class="card-text">
+                                          {{rutina.IdRutina.Descripcion}}
+                                      </p>
+                                      <a href="/rutinas-detalle/{{rutina.IdRutina.Id}}" class="btn btn-success">Detalles</a>
+                                  </div>
+                              </div>
+                          </div>
                         {% endfor %}
                     </div>
                 </div>
