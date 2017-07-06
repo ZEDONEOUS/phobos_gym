@@ -1,11 +1,12 @@
 from flask import request, render_template, flash, url_for, redirect
-from services import RoguzService
+from services import PhobosService
 from utilities.forms_handler import *
 from passlib.hash import sha256_crypt
 import json
 
-serv = RoguzService()
+serv = PhobosService()
 
+# Utilidad de control para el registro de usuarios
 class RegistroUsuarios(object):
     def registro(self):
         form = FormularioRegistro(request.form)

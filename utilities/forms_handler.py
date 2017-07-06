@@ -1,9 +1,9 @@
 from wtforms import Form, StringField, TextAreaField, PasswordField, SelectField, BooleanField, validators, HiddenField
-from services import RoguzService
+from services import PhobosService
 from termcolor import colored
 import json
 
-serv = RoguzService()
+serv = PhobosService()
 
 # Define un formulario de registro para usuarios nuevos
 class FormularioRegistro(Form):
@@ -17,6 +17,7 @@ class FormularioRegistro(Form):
     ])
     confirmar = PasswordField('Confirmar Contrasena')
 
+# Define un formulario para el logueo de usuarios
 class FormularioLogueo(Form):
     usuario = StringField('Usuario', [validators.Length(min = 1, max = 50)])
     contrasena = PasswordField('Contrasena', [
@@ -24,11 +25,12 @@ class FormularioLogueo(Form):
         validators.DataRequired()
     ])
 
+# Define un formulario para le insercion de rutinas
 class FormularioInsertarRutina(Form):
     nombre = StringField('Nombre', [validators.Length(min = 1, max = 50)])
     descripcion = TextAreaField('Descripcion', [validators.Length(min = 1, max = 500)])
 
-
+# Define un formulario para la insercion de tipos de cuerpo a las rutinas
 class FormularioInsertarRutinaTipoCuerpo(Form):
     obj_tipos_cuerpos = serv.get("tipo_cuerpo", "")
 
@@ -40,12 +42,12 @@ class FormularioInsertarRutinaTipoCuerpo(Form):
         choices = [(json.dumps(tc), tc['Descripcion']) for tc in obj_tipos_cuerpos]
     )
 
-
+# Define un formulario para la creacion de ejercicios
 class FormularioInsertarEjercicio(Form):
     nombre = StringField('Nombre', [validators.Length(min = 1, max = 50)])
     descripcion = TextAreaField('descripcion', [validators.Length(min = 1, max = 500)])
 
-
+# Define un formulario para la insercion de ejercicios a las rutinas
 class FormularioInsertarRutinaEjercicio(Form):
     obj_ejercicios = serv.get("ejercicio", "")
 
@@ -57,7 +59,7 @@ class FormularioInsertarRutinaEjercicio(Form):
         choices = [(json.dumps(ej), ej['Nombre']) for ej in obj_ejercicios]
     )
 
-
+# Define un formulario para la adicion de rutinas a los usuarios
 class FormularioInsertarRutinaUsuario(Form):
     obj_rutinas = serv.get("rutina", "")
 

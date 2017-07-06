@@ -1,13 +1,16 @@
 from flask import request, render_template, flash, redirect, url_for, session, logging
 from passlib.hash import sha256_crypt
 from utilities.forms_handler import *
-from services import RoguzService
+from services import PhobosService
 from functools import wraps
 from termcolor import colored
 
-serv = RoguzService()
+serv = PhobosService()
 
+# Definicion de clase para el control de los logueos en la plataforma
 class LoginHandler(object):
+
+    # funcion para el logueo de ususarios
     def usuario(self):
         form = FormularioLogueo(request.form)
         if request.method == 'POST' and form.validate():
@@ -30,7 +33,7 @@ class LoginHandler(object):
 
         return render_template('login.html', form = form)
 
-
+    # Funcion para logueo de administradores
     def administrador(self):
         form = FormularioLogueo(request.form)
         if request.method == 'POST' and form.validate():
