@@ -3,12 +3,12 @@ from utilities.forms_handler import *
 from utilities.login_handler import LoginHandler, login_control_admin, login_control_usuario
 from utilities.registro_handler import *
 from controllers.components import FabricaComponentes
-from services import RoguzService
+from services import PhobosService
 from termcolor import colored
 import json
 
 app = Flask(__name__)
-serv = RoguzService()
+serv = PhobosService()
 login_handler = LoginHandler()
 
 # Enrutador pagina de inicio

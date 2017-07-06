@@ -3,7 +3,7 @@ from termcolor import colored
 import json
 
 
-class RoguzService(object):
+class PhobosService(object):
     # Inicializa el servicio basado en una url donde se encuentra tal
     def __init__(self):
         self.url = "http://localhost:8080/v1/"
