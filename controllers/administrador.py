@@ -1,12 +1,14 @@
 from flask import render_template, request, flash, redirect, url_for
 from utilities.forms_handler import *
-from services import RoguzService
+from services import PhobosService
 from utilities.json_utilities import convert_to_json
 import json
 from datetime import date
 
-serv = RoguzService()
+serv = PhobosService()
 
+# Clase para la implementacion y carga de operaciones
+# de administradores del sitio
 class Administrador(object):
     def get_dashboard(self):
         obj = {

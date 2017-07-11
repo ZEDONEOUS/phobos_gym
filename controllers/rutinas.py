@@ -1,10 +1,13 @@
 from flask import render_template, request, flash, redirect, url_for
 from utilities.forms_handler import *
-from services import RoguzService
+from services import PhobosService
 from utilities.json_utilities import convert_to_json
 import json
 
-serv = RoguzService()
+serv = PhobosService()
+
+# Clase para la carga e implementacion de operaciones sobre las rutinas
+# su relacion con tipo cuerpo y usuarios
 class Rutinas(object):
     def get_rutinas(self):
         obj = {

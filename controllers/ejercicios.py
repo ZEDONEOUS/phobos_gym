@@ -1,11 +1,13 @@
 from flask import render_template, request, flash, redirect, url_for
 from utilities.forms_handler import *
-from services import RoguzService
+from services import PhobosService
 from utilities.json_utilities import convert_to_json
 import json
 
-serv = RoguzService()
+serv = PhobosService()
 
+# Clase para el control de los ejercicios, realizacion de operaciones
+# sobre las rutinas
 class Ejercicios(object):
     def get_ejercicios(self):
         obj = {
@@ -50,6 +52,7 @@ class Ejercicios(object):
                     "IdRutina": form.rutina_id.data,
                     "IdEjercicio": form.new_ejercicio.data,
                 }
+                print colored(new_rutina_ejercicio, "yellow")
                 new_rutina_ejercicio_json = convert_to_json(new_rutina_ejercicio)
                 serv.post("rutinas_ejercicios", new_rutina_ejercicio_json)
 

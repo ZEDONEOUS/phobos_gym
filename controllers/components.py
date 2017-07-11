@@ -4,8 +4,9 @@ from administrador import Administrador
 from usuarios import Usuarios
 from termcolor import colored
 
+# Clase para la carga de componentes a traves de
+# metodo fabrica
 class FabricaComponentes(object):
-
     def crear_componente(componente):
         if componente == "Rutinas":
             return Rutinas()
